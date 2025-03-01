@@ -1,74 +1,130 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Button, StyleSheet, Image, Alert, TouchableOpacity } from 'react-native';
+import { router } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import Animated, {
+  FadeInDown,
+  FadeInUp
+} from 'react-native-reanimated';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 
-export default function HomeScreen() {
+export default function LoginPage() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  // Handle form submission
+  const handleLogin = () => {
+    if (!username || !password) {
+      Alert.alert('Validation Error', 'Please enter both username and password.');
+    } else {
+      Alert.alert('Login Success', `Welcome, ${username}!`);
+    }
+  };
+
+  const adminCredentials = {
+    username: 'admin',
+    password: 'admin123',
+  };
+
+  const userCredentials = {
+    username: 'euguest',
+    password: 'eugest123',
+  };
+
+  setTimeout(() => {
+    if (username === 'admin' && password === 'admin123') {
+      router.replace('/admin');
+    } else if (username === 'euguest' && password === 'eugest123') {
+      router.replace('/user');
+    }
+  }, 2000); // 2-second delay
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+
+    <View style={styles.container}>
+      <Image source={require("../../assets/images/logo.png")} style={styles.logo} />
+      <Text style={styles.title}></Text>
+
+      {/* Username Input */}
+      <TextInput
+        style={styles.input}
+        placeholder="Username"
+        value={username}
+        onChangeText={setUsername}
+      />
+
+      {/* Password Input */}
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+
+      {/* Login Button */}
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
+
+      {/* Optional: You can add other options like a "Forgot Password?" link */}
+      <Text style={styles.link}>Forgot Password?</Text>
+      <Text style={styles.signin}>Sign in</Text>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
+    padding: 20,
+    backgroundColor: '#023E8A',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: -40,
+    color: 'white',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  button: {
+    backgroundColor: 'white', // Button background color
+    paddingVertical: 12, // Vertical padding (top and bottom)
+    paddingHorizontal: 25, // Horizontal padding (left and right)
+    borderRadius: 5, // Rounded corners
+    alignItems: 'center', // Center text inside the button
+    marginBottom: 12, // Space below the button
+  },
+  buttonText: {
+    color: '#023E8A', // Text color
+    fontSize: 16, // Font size
+    fontWeight: 'bold', // Font weight
+  },
+  input: {
+    width: '90%',
+    padding: 10,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    backgroundColor: '#023E8A',
+    color: 'white',
+  },
+
+  link: {
+    marginTop: 10,
+    color: 'white',
+
+  },
+  signin: {
+    marginTop: 9,
+    color: 'white',
+  },
+  logo: {
+    width: 500,  // Adjust the width of the logo to make it smaller
+    height: 300, // Adjust the height of the logo to make it smaller
+    marginTop: -70, // Space below the logo
+    resizeMode: 'contain', // Ensure the image scales correctly
   },
 });
