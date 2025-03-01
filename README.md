@@ -1,4 +1,4 @@
-# DevCon 2025 : RideSafe
+# DevCon Hackathon 2025 : RideSafe
 
 QR code phishing is an escalating threat, with cybercriminals using QR codes to trick users into revealing sensitive information. Incidents like the fraudulent Interac e-transfer in December 2023 highlighted the urgency of protecting individuals from these scams. Inspired by the rising dangers, we created Qusion to provide an instant, reliable solution to identify malicious QR codes and prevent financial loss and data theft.
 
