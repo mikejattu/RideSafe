@@ -44,3 +44,19 @@ Adjust schedules to reduce overcrowding, improving the overall rider experience.
 3. expo.io
 4. react-native
 5. vit
+
+## App Demo
+- **Security Guard Sign In to View Security Alert**
+  
+![ScreenRecording_03-01-2025_3-32-14_PM_1](https://github.com/user-attachments/assets/88804d4e-f234-4599-b5d4-d6cad8b27699)
+
+- **Passenger Sign In to Submit a Report and Receive Alerts**
+  
+![ScreenRecording_03-01-2025_15-30-27_1](https://github.com/user-attachments/assets/8f83c683-049d-4b01-86f0-0bf5c3603312)
+
+- **Passenger View Past Report Submitted**
+
+![copy_C2BACF0C-3D6D-4457-ABEE-0F04CEDB377F](https://github.com/user-attachments/assets/05c9e12d-4cb2-4be2-8aea-172ca8fa8a7b)
+
+
+
